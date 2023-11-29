@@ -30,5 +30,13 @@ pipeline {
             }
         }
     }
+   post {
+        failure {
+            emailext body: "Ce Build $BUILD_NUMBER a échoué",
+            recipientProviders: [requestor()],
+            subject: "Échec du Build",
+            to: "desio.j@live.fr"
+        }
+    }
 }
 
